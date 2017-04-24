@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pythagorean Therorem Calc</title>
+</head>
+<body>
+
+<h1>A^2 + B^2 = C^2</h1>
+
+<input id="A" name="A" type="number" placeholder="A"><input id="B" name="B" type="number" placeholder="B"><input id="C" name="C" type="number" placeholder="C">
+<p id="output"></p>
+<button id="pythagorean">Find the final side</button>
+<script>
+	const a = document.querySelector('#A')
+	const b = document.querySelector('#B')
+	const c = document.querySelector('#C')
+	const output = document.querySelector('#output')
+	const pytagSubmit = document.querySelector('#pythagorean')
+
+	function pythagoreanTherom() {
+		if (a.value == "") {
+			let bxb = b.value * b.value
+			let cxc = c.value * c.value
+			let answer = Math.sqrt(cxc-bxb)
+			output.innerHTML = `Missing side is sqrt(${cxc-bxb}) or ${answer}`;
+			console.log("a is null");
+		} else if(b.value == "") {
+			let axa = a.value * a.value
+			let cxc = c.value * c.value
+			let answer = Math.sqrt(cxc-axa)
+			output.innerHTML = `Missing side is sqrt(${cxc-axa}) or ${answer}`;
+			console.log("B is null");
+		} else {
+			let axa = a.value * a.value
+			let bxb = b.value * b.value
+			let answer = Math.sqrt(axa+bxb)
+			output.innerHTML = `Missing side is sqrt(${axa+bxb}) or ${answer}`;
+			console.log("c is null");
+		}
+	}
+
+	pytagSubmit.addEventListener('click', pythagoreanTherom)
+
+</script>
+</body>
+</html>

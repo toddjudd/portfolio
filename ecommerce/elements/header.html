@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="css\header.css">
+
+<nav id="navHead">
+  <ul>
+    <li class="logo"><a href="http://toddjudd.com">Todd</a></li>
+    <li><a href="http://toddjudd.com/assignment">Assignments</a></li>
+    <li><a href="http://toddjudd.com/store">My Store</a></li>
+    <li><a href="http://toddjudd.com/contact">Contact me!</a></li>
+  </ul>
+</nav>
+<script>
+  const nav = document.querySelector('#navHead');
+  const topOfNav = nav.offsetTop;
+
+  function fixNav(e) {
+    if (window.scrollY >= topOfNav) {
+      document.body.classList.add('fixed-nav');
+      document.body.style.paddingTop = nav.offsetHeight + 'px';
+    } else {
+      document.body.classList.remove('fixed-nav');
+      document.body.style.paddingTop = 0;
+    }
+  }
+
+  window.addEventListener('scroll', fixNav);
+  window.addEventListener("DOMContentLoaded", fixNav);
+</script>

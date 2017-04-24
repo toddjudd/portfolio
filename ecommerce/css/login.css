@@ -1,0 +1,35 @@
+.site-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+input {
+	border: 2px solid rgba(0, 0, 0, 0.3);
+	margin: 12px;
+	padding: 4px;
+	-webkit-appearance: none;
+	
+}
+
+input:focus {
+	border:2px solid rgba(46, 81, 26, 0.5);
+	box-shadow: none !important;
+	outline:rgba(46, 81, 26, 0.5);
+}
+
+button {
+	margin: 8px;
+	padding: 8px 24px;
+	border: none;
+	background-color: #1D3310;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+table tr th[colspan="2"] {
+	align:center;
+}

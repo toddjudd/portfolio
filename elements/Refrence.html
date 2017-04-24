@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Refrence Page</title>
+	<!-- Perma links to JQUERY and JQUERY UI-->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script type="text/javascript">
+		var html = '';
+		$(document).ready(function () {
+			$.getJSON('FILE.json', function (data) {
+				$.each(data, function (key, value) {
+					$.each(value, function (index, ITEM) {
+						console.log(index + " " + ITEM.VALUE);
+						html += ITEM.VALUE;
+					});
+				});
+				console.log(html);
+				$('#OUTPUT').html(html);
+			});
+		});
+
+		var jsonobj = {
+						"Item": [{
+							"key": "value",
+							"key": "value"
+						},
+						{
+							"key": "value",
+							"key": ["value", 
+									"array", 
+									"items"]
+						}]
+					}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
