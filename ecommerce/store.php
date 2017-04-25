@@ -1,5 +1,3 @@
-<!-- This is a git test -->
-
 <?php 
 require_once 'php/db_functions.php';
 session_start();
