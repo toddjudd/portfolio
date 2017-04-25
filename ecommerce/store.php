@@ -50,7 +50,7 @@ if (isset($_SESSION['username'])) {
 	}
 
 	.item-card {
-		min-width: 200px;
+		min-width: 250px;
 		max-width: 500px;
 		padding: 12px;
 		margin: 12px;
@@ -77,6 +77,12 @@ if (isset($_SESSION['username'])) {
 
 	.link-price > span {
 		flex:1;
+	}
+
+	.item-card > img{
+		max-height: 250px;
+		max-width: 200px;
+		margin: 0 auto;
 	}
 
 </style>
