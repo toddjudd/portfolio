@@ -4,32 +4,26 @@ require_once 'db_functions.php';
 session_start();
 
 $date = db_date();
-$ucheck = $_POST['username'];
-$pcheck = $_POST['password'];
+$link = db_connect();
 
-$ucheck = stripcslashes($ucheck);
-$ucheck = mysql_real_escape_string($ucheck);
+$ucheck = mysqli_escape_string($link, stripcslashes($_POST['username']));
+$pcheck = mysqli_escape_string($link, stripcslashes($_POST['password']));
 
-$pcheck = stripcslashes($pcheck);
-$pcheck = mysql_real_escape_string($pcheck);
+$pcheck = hash(ripemd160, "saltdat".$pcheck."saltadded");
 
-$user = db_select("SELECT * FROM users WHERE username = $ucheck");
-
+$user = db_select("SELECT * FROM user2 WHERE username = '$ucheck' AND password = '$pcheck'");
+// print_r($user);
 if (count($user) == 1) {
-	$row = $user[1];
-	if (password_verify($upass, $row['password'])) {
-		$_SESSION['usersession'] = $row['user_id'];
-		$_SESSION['username'] = $row['username'];
-		$_SESSION['name'] = $row['firstName']." ".$row['lastName'];
-		$_SESSION['userpass'] = $row['password'];
-		$_SESSION['userrow'] = $row;
-		header("location: store");
-	} else{
-		echo "Password didn't verify";
-	}
-} elseif (count($user) > 1) {
-	echo "multiple usere pulled";
+	$_SESSION['usersession'] = $user[0]['user_id'];
+	$_SESSION['username'] = $user[0]['username'];
+	$_SESSION['name'] = ucfirst("{$user[0]['firstname']} {$user[0]['lastname']}");
+	$_SESSION['password'] = $_POST['password'];
+	$_SESSION['email'] = $user[0]['email'];
+	$_SESSION['userrow'] = $user[0];
+	print_r($_SESSION);
+	header("location: http://toddjudd.com/ecommerce/store");
 } else {
-	echo "no user pulled";
+	header("location: http://toddjudd.com/ecommerce/login?f=t");
 }
+
 ?>

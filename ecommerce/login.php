@@ -1,6 +1,9 @@
 <?php 
 require_once 'php/db_functions.php';
 session_start();
+if (isset($_SESSION['username'])) {
+	header('location: store');
+}
 ?>
 
 <style type="text/css">
@@ -27,6 +30,20 @@ session_start();
 		margin: 12px 2px;
 	}
 
+	table {
+		margin-top: 12px;
+	}
+
+	nav > a {
+		color: #f1f1f1;
+		text-decoration: none;
+		margin: auto 15px;
+		padding: 12px;
+		border-radius: 4px;
+		font-size: 12pt;
+		background-color: #f08a4b;
+	}
+
 	button:hover {
 		background: #D78A76;
 		text-decoration: none;
@@ -47,6 +64,18 @@ session_start();
 		justify-content: center;
 	}
 
+	.new {
+		font-size: 8pt;
+		color: #577590;
+		text-decoration: none;
+	}
+
+	.new:hover {
+		font-size: 8pt;
+		color: #D78A76;
+		text-decoration: none;
+	}
+
 </style>
 
 
@@ -63,6 +92,7 @@ session_start();
 	<span></span>
 	<h1>Acme Co.</h1>
 	<span></span>
+	<a href="http://toddjudd.com">Home</a>	
 </nav>
 
 <!-- login Form -->
@@ -73,18 +103,24 @@ session_start();
 				</th><td colspan="2"><h2>Sign In</h2></td>   				
 			</tr><tr>
 				<td><label><b>Username: </b></label></td>
-				<td><input type="text" placeholder="Username" name="text" required></td>
+				<td><input type="text" placeholder="Username" name="username" required></td>
 			</tr>
 			<tr>
 				<td><label><b>Password: </b></label></td>
-				<td><input type="password" placeholder="Enter Password" name="pass" required=""></td>
+				<td><input type="password" placeholder="Enter Password" name="password" required=""></td>
 			</tr>
 		</tbody></table>
 		<center>
 			<button type="submit" name="btn-login">Login</button>
 			<button type="reset">Reset</button>
-			<br><br><br>
-			<a href=""></a>
+			<br><br>
+	<?php 
+	if ($_GET['f'] == 't') {
+		echo "<span style='color:red; font-size:12pt;'>Incorrect username or password</span>";
+	}
+	?>
+			<br>
+			<a class="new" href="createuser">New? create a user here.</a>
 		</center>
 	</form>
 </div>
